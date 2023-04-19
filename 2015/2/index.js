@@ -1,6 +1,5 @@
 const fs = require("fs");
 const input = fs.readFileSync("./input.txt", "utf8").trim().split("\n");
-// const input = fs.readFileSync("./input-example.txt", "utf8").trim().split("\n");
 
 let totalSquareFootage = 0;
 let totalRibbonLength = 0;
