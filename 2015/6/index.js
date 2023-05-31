@@ -62,4 +62,46 @@ function part1() {
   return updateGrid(input, grid);
 }
 
-console.log(part1());
+function brightnessGrid(instructions, grid) {
+  let brightness = 0;
+  instructions.forEach(instruction => {
+    const instructionParts = instruction.split(" through ");
+    const end = instructionParts[1].split(",").map(coord => parseInt(coord, 10));
+    if (instructionParts[0].startsWith("turn")) {
+      instructionParts[0] = instructionParts[0].slice(5);
+    }
+    const verb = instructionParts[0].split(" ")[0];
+    const start = instructionParts[0].split(" ")[1].split(",").map(coord => parseInt(coord, 10));
+    for (let i = start[0]; i <= end[0]; i++) {
+      for (let j = start[1]; j <= end[1]; j++) {
+        switch (verb) {
+          case "on":
+            grid[i][j]++;
+            brightness++;
+            break;
+          case "off":
+            if (grid[i][j] > 0) {
+              grid[i][j]--;
+              brightness--;
+            }
+            break;
+          case "toggle":
+            grid[i][j] += 2;
+            brightness += 2;
+            break;
+          default:
+            console.log(`verb "${verb}" not found`)
+        }
+      }
+    }
+  });
+  return brightness;
+}
+
+function part2() {
+  const grid = createGrid();
+  return brightnessGrid(input, grid);
+}
+
+console.log(`the answer to part 1 is ${part1()}`);
+console.log(`the answer to part 2 is ${part2()}`);
