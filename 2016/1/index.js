@@ -11,12 +11,14 @@ const cardinals = [
   [0, -1], // W
 ]
 const visited = {};
+let notifiyVisit = true;
 
 function hasVisited(x, y) {
   if (!visited[`${x},${y}`]) {
     visited[`${x},${y}`] = true;
-  } else {
-    console.log(`visited ${x},${y} twice`);
+  } else if (notifiyVisit) {
+    console.log(`Part 2: ${x + y}`);
+    notifiyVisit = false;
   }
 }
 
@@ -39,4 +41,4 @@ input.split(", ").forEach(command => {
     hasVisited(x, currentPosition[1])
   }
 });
-console.log(currentPosition);
+console.log(`Part 1: ${currentPosition[0] + currentPosition[1]}`);
