@@ -91,4 +91,14 @@ function part1() {
   });
   return graph.getNode("a");
 }
+
+function part1() {
+  const graph = new Graph();
+  input.forEach(node => {
+    const [value, key] = node.split(" -> ");
+    graph.addNode({ key, value });
+  });
+  return graph.getNode("a");
+}
 console.log(`the answer to part1 is ${part1()}`);
+// for part 2: update the input to b in input.txt with the answer from part 1 and run it again!
