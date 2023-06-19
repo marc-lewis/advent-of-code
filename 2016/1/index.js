@@ -26,9 +26,12 @@ input.split(", ").forEach(command => {
   const direction = command[0];
   const distance = command.slice(1);
   if (direction === "L") {
+    // turning left is like turning right 3 times. We could use regular mod instead
+    // of this expression to handle negatives:
+    // cardinal = (cardinal + 3) % 4
     cardinal = (((cardinal - 1) % 4) + 4) % 4;
   } else {
-    cardinal = (((cardinal + 1) % 4) + 4) % 4;
+    cardinal = (cardinal + 1) % 4;
   }
   const [x, y] = currentPosition;
   const [dx, dy] = cardinals[cardinal];
