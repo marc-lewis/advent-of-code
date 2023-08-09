@@ -31,7 +31,7 @@ function countContainments(intervals: number[][][]): number {
     }
   }, 0);
 }
-
+// [22, 26], [22, 24]
 function countOverlaps(intervals: number[][][]): number {
   return intervals.reduce((count: number, pair: number[][]) => {
     if(pair[1][0] <= pair[0][1]) {
