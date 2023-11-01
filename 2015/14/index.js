@@ -14,16 +14,18 @@ input.forEach(reindeer => {
 })
 
 for (let second = 0; second < 2503; second++) {
-  let leader;
+  let leaders = [];
   for (const reindeer of Object.values(reindeers)) {
     const remainder = second % (reindeer.duration + reindeer.rest)
     if (remainder < reindeer.duration) {
       reindeer.distance += reindeer.speed
     }
-    if (!leader || (reindeer.distance > leader.distance)) {
-      leader = reindeer
+    if ((leaders.length === 0) || (reindeer.distance === leaders[0]?.distance)) {
+      leaders.push(reindeer)
+    } else if (reindeer.distance > leaders[0].distance) {
+      leaders = [reindeer]
     }
   }
-  leader.points += 1
+  leaders.forEach(leader => leader.points += 1)
 }
 console.log(reindeers)
