@@ -1,6 +1,6 @@
 console.time("Day 1 took");
 const fs = require("fs");
-const input = fs.readFileSync("./mikes_input.txt", "utf8").trim();
+const input = fs.readFileSync("./input.txt", "utf8").trim();
 
 let floor = 0;
 let basementPosition = null;
@@ -11,7 +11,7 @@ for (let i = 0; i < input.length; i++) {
     floor--;
   }
 
-  if(floor === -1 && basementPosition === null) {
+  if (floor === -1 && basementPosition === null) {
     basementPosition = i + 1;
   }
 }
