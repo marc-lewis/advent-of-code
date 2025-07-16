@@ -1,4 +1,4 @@
-console.time("Day 1 took");
+console.time("Day 1");
 const fs = require("fs");
 const input = fs.readFileSync("./input.txt", "utf8").trim();
 
@@ -17,4 +17,4 @@ for (let i = 0; i < input.length; i++) {
 }
 
 console.log(`Santa ends up on floor ${floor} and enters the basement at position ${basementPosition}`);
-console.timeEnd("Day 1 took");
+console.timeEnd("Day 1");
