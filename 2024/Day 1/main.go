@@ -8,13 +8,13 @@ import (
 	"strings"
 )
 
-func main() {
+func partOne() int {
 	sum := 0
 	// data, err := os.ReadFile("./example.txt")
 	data, err := os.ReadFile("./input.txt")
 	if err != nil {
 		fmt.Printf("Error reading file: %v\n", err)
-		return
+		return 0
 	}
 	content := string(data)
 
@@ -40,5 +40,38 @@ func main() {
 		}
 		sum += value
 	}
-	fmt.Println("Total Sum:", sum)
+	return sum
+}
+
+func partTwo() int {
+	// data, err := os.ReadFile("./example.txt")
+	data, err := os.ReadFile("./input.txt")
+	if err != nil {
+		fmt.Printf("Error reading file: %v\n", err)
+		return 0
+	}
+	content := string(data)
+
+	left := []int{}
+	rightModes := map[int]int{}
+
+	lines := strings.Split(strings.TrimSpace(content), "\n")
+	for i := 0; i < len(lines); i++ {
+		parts := strings.Split(lines[i], "   ")
+		leftVal, _ := strconv.Atoi(parts[0])
+		rightVal, _ := strconv.Atoi(parts[1])
+		left = append(left, leftVal)
+		rightModes[rightVal] += 1
+	}
+	slices.Sort(left)
+	similarityScore := 0
+	for i := 0; i < len(left); i++ {
+		similarityScore += left[i] * rightModes[left[i]]
+	}
+	return similarityScore
+}
+
+func main() {
+	fmt.Println(partOne())
+	fmt.Println(partTwo())
 }
